@@ -27,11 +27,13 @@ class LoginSignUpViewController: UIViewController {
         setupView()
     }
     
-    // MARK: View Design + Functionality:
+    // MARK: View Setup:
     func setupView() {
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))) // Enables the user to dismiss the keyboard when they tap anywhere in the view.
-        self.subView.layer.cornerRadius = 20 // Round the corners of the subview.
-        
+        // Dismiss Keyboard:
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        self.subView.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        // Subview:
+        self.subView.layer.cornerRadius = 20
         // LoginButton setup.
         self.loginSignUpButton.backgroundColor = UIColor.white
         self.loginSignUpButton.layer.cornerRadius = 10
