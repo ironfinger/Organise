@@ -76,13 +76,15 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     func changeColours(selectedColour: Int) {
-        UIView.animate(withDuration: 1) {
+        UIView.animate(withDuration: 1, delay: 0, options: .allowUserInteraction, animations: {
             self.view.backgroundColor = self.pullColour(selectedColour: selectedColour, shade: 1)
             self.subView.backgroundColor = self.pullColour(selectedColour: selectedColour, shade: 2)
             self.nameTextField.backgroundColor = self.pullColour(selectedColour: selectedColour, shade: 1)
             self.descriptionTextView.backgroundColor = self.pullColour(selectedColour: selectedColour, shade: 1)
             self.colourPickerView.backgroundColor = self.pullColour(selectedColour: selectedColour, shade: 1)
             self.nextButton.tintColor = self.pullColour(selectedColour: selectedColour, shade: 3)
+        }) { (true) in
+            print("Animation complete")
         }
     }
     
@@ -136,7 +138,6 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             }
             colourToSend = 4
         }
-        
         return returnVal
     }
     

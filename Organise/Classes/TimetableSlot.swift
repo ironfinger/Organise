@@ -12,7 +12,10 @@ class TimetableSlot {
     var name = ""
     var description = ""
     var color = ""
-    
+    var startTime = ""
+    var endTime = ""
+    var weekDay = ""
+    var week = ""
     /*
      Colors avaliable:
         - Default (Turquise)
