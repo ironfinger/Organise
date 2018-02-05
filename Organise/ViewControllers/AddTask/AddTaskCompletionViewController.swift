@@ -25,13 +25,13 @@ class AddTaskCompletionViewController: UIViewController {
     // Variables:
     var newTimetableSlot = TimetableSlot()
     
+    // MARK: View setup.
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupView()
     }
     
-    // MARK: View setup.
     func setupView() {
         // Sub View:
         subView.layer.cornerRadius = 20
@@ -86,7 +86,7 @@ class AddTaskCompletionViewController: UIViewController {
         }else if (newTimetableSlot.color == "Blue") {
             self.view.backgroundColor = colorPallete.blue[0]
             self.subView.backgroundColor = colorPallete.blue[1]
-        
+            
             // Labels:
             self.taskNameLabel.backgroundColor = colorPallete.blue[0]
             self.taskDayLabel.backgroundColor = colorPallete.blue[0]
@@ -123,11 +123,23 @@ class AddTaskCompletionViewController: UIViewController {
     }
     
     @IBAction func addTaskButtonTapped(_ sender: Any) {
+        pushToDatabase() // Push the newTimetableSlot variable to the Firebase database.
         performSegue(withIdentifier: "routeBackSegue", sender: nil)
     }
     
     func pushToDatabase() {
+        let data = [
+            "timetableName": newTimetableSlot.name,
+            "descripton": newTimetableSlot.description,
+            "startTime": newTimetableSlot.startTime,
+            "endTime": newTimetableSlot.endTime,
+            "weekDay": newTimetableSlot.weekDay,
+            "week": newTimetableSlot.week,
+            "color": newTimetableSlot.color
+        ]
+        let userUID = Auth.auth().currentUser!.uid
         
+        Database.database().reference().child("users").child(userUID).child("timetable").child(newTimetableSlot.week).child(newTimetableSlot.weekDay).childByAutoId().setValue(data)
     }
     
     override func didReceiveMemoryWarning() {

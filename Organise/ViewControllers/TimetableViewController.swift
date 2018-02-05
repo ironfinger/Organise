@@ -14,6 +14,7 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     
     var timetableSlots:[String] = []
     
+    // MARK: View Setup:
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -27,6 +28,7 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.reloadData()
     }
     
+    // MARK: Table View:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return timetableSlots.count
     }
@@ -41,16 +43,4 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
