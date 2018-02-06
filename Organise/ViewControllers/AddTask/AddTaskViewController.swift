@@ -18,7 +18,7 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var colourPickerView: UIPickerView!
     
     // Variables:
-    var timetableSlot = TimetableSlot()
+    var addType = ""
     let pickerColours = [
         "Default",
         "Red",
@@ -27,7 +27,8 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         "Purple"
     ]
     var colourToSend = 0 // Holds the colour to store into the timetable slot object.
-    
+
+    // MARK: View setup.
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,7 +38,6 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         setupView()
     }
     
-    // MARK: View setup.
     func setupView() {
         // Dissmiss Keyboard:
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
@@ -48,7 +48,6 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         nameTextField.layer.cornerRadius = 10
         // Description Text View:
         descriptionTextView.layer.cornerRadius = 10
-        
         // Colour Picker View:
         colourPickerView.layer.cornerRadius = 10
         // Next button:
@@ -57,7 +56,6 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     // MARK: PickerView:
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -144,6 +142,16 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     // MARK: Actions:
     @IBAction func nextButtonTapped(_ sender: Any) {
         // This is to stop the app from uploading a task without a name.
+        // This is to basically decide between a type timetable slot or a new task:
+        if (addType == "Timetable") {
+            createTimetableSlot() // Creates a new timetable slot.
+        }else if (addType == "Task") {
+            createTask() // Creates a new Task.
+        }
+    }
+    
+    func createTimetableSlot() { // Creates a new timetable object and sends the user to the times VC for a timetable slot.
+        let timetableSlot = TimetableSlot() // New timetable slot:
         if (nameTextField.text == nil || nameTextField.text == "") {
             print("Couldn't move onto next step as the user didn't put in a name for the text")
         }else {
@@ -156,14 +164,35 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             timetableSlot.color = pickerColours[colourToSend]
             
             print("Colour to store \(timetableSlot.color)")
-            performSegue(withIdentifier: "AddTaskTimesSegue", sender: nil)
+            performSegue(withIdentifier: "AddTimetableTimesSegue", sender: timetableSlot)
         }
     }
     
+    func createTask() { // Creates a new task object and sends the user to the times VC for a new task.
+        let task = Task() // New task:
+        if (nameTextField.text == nil || nameTextField.text == "") {
+            print("Couldn't move onto next step as the user didn't put in a name for the text")
+        }else {
+            task.name = nameTextField.text!
+            if (descriptionTextView.text != nil) {
+                task.description = descriptionTextView.text!
+            }else{
+                task.description = ""
+            }
+            task.color = pickerColours[colourToSend]
+            
+            print("Colour to store \(task.color)")
+            performSegue(withIdentifier: "AddTaskTimesSegue", sender: task)
+        }
+    }
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "AddTaskTimesSegue") {
+        if (segue.identifier == "AddTimetableTimesSegue") {
             let nextVC = segue.destination as! AddTaskTimesViewController
-            nextVC.newTimetableSlot = timetableSlot
+            nextVC.newTimetableSlot = sender as! TimetableSlot
+        }else if (segue.identifier == "AddTaskTimesSegue") {
+            let nextVC = segue.destination as! AddTaskTodoTimesViewController
+            nextVC.newTask = sender as! Task
         }
     }
     

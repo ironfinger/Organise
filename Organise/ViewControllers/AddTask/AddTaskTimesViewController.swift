@@ -53,9 +53,8 @@ class AddTaskTimesViewController: UIViewController {
     
     func assignViewColors() {
         let colorPallete = TaskColours()
-        if (newTimetableSlot.color == "Default") {
-            
-        }else if (newTimetableSlot.color == "Red") {
+        
+        if (newTimetableSlot.color == "Red") {
             self.view.backgroundColor = colorPallete.red[0]
             self.subView.backgroundColor = colorPallete.red[1]
             self.startTimeSubView.backgroundColor = colorPallete.red[0]
@@ -75,6 +74,11 @@ class AddTaskTimesViewController: UIViewController {
             self.subView.backgroundColor = colorPallete.purple[1]
             self.startTimeSubView.backgroundColor = colorPallete.purple[0]
             self.endTimeSubView.backgroundColor = colorPallete.purple[0]
+        }else {
+            self.view.backgroundColor = colorPallete.turquise[0]
+            self.subView.backgroundColor = colorPallete.turquise[1]
+            self.startTimeSubView.backgroundColor = colorPallete.turquise[0]
+            self.endTimeSubView.backgroundColor = colorPallete.turquise[0]
         }
     }
     
@@ -140,6 +144,7 @@ class AddTaskTimesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextVC = segue.destination as! AddTaskCompletionViewController
         nextVC.newTimetableSlot = newTimetableSlot
+        nextVC.addType = "timetable"
     }
     
     override func didReceiveMemoryWarning() {

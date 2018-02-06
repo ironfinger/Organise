@@ -38,7 +38,18 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
         cell.textLabel!.text = timetableSlots[indexPath.row]
         return cell
     }
-
+    
+    // MARK: Actions:
+    @IBAction func addButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "addTimetableSlotSegue", sender: nil)
+    }
+    
+    // MARK: Segue:
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextVC = segue.destination as! AddTaskViewController
+        nextVC.addType = "Timetable"
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
