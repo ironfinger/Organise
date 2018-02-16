@@ -93,7 +93,6 @@ class AddTaskTimesViewController: UIViewController {
             "Start Time \(newTimetableSlot.startTime) " +
             "End Time"
         )
-        
         performSegue(withIdentifier: "addTaskCompletionSegue", sender: nil)
     }
     

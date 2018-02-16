@@ -13,6 +13,7 @@ class AddTaskTodoTimesViewController: UIViewController {
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var datePickerSubView: UIView!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     // Variables:
     var newTask = Task()
@@ -65,6 +66,17 @@ class AddTaskTodoTimesViewController: UIViewController {
     
     @IBAction func nextButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "TaskCompletetionSegue", sender: nil)
+    }
+    
+    func pullDatePickerTimes() {
+        let formatForDay = DateFormatter() // Holds the format for day.
+        let formatForTime = DateFormatter() // Holds the format for times.
+        
+        formatForDay.dateFormat = "yyyy-MM-dd"
+        formatForTime.dateFormat = "HH:mm"
+        
+        print(newTask.day)
+        print(newTask.time)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

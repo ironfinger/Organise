@@ -12,4 +12,6 @@ class Task {
     var name = ""
     var description = ""
     var color = ""
+    var time = ""
+    var day = ""
 }

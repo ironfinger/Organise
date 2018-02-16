@@ -32,6 +32,7 @@ class AddTaskCompletionViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupView()
+        print("Add Type \(addType)")
     }
     
     func setupView() {
@@ -125,48 +126,41 @@ class AddTaskCompletionViewController: UIViewController {
     }
     
     @IBAction func addTaskButtonTapped(_ sender: Any) {
-        if (addType == "Timtable") {
-            pushToDatabase(type: 0)
+        // Fetch userPath:
+        let userPath = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
+        
+        if (addType == "Timetable") {
+            pushTimetableSlotToDatabase(userPath: userPath) // Send timetableSlot to database.
         }else if (addType == "Task") {
-            pushToDatabase(type: 1)
+            pushTaskToDatabase(userPath: userPath) // Send task to database.
         }
-        performSegue(withIdentifier: "routeBackSegue", sender: nil)
+        performSegue(withIdentifier: "routeBackSegue", sender: nil) // Route back to home view controller.
     }
     
-    func pushToDatabase(type: Int) {
-        let userUID = Auth.auth().currentUser!.uid
-        let userPath = Database.database().reference().child("users").child(userUID)
-
-        if (type == 0) {
-            /*
-             let data = [
-             "timetableName": newTimetableSlot.name,
-             "descripton": newTimetableSlot.description,
-             "startTime": newTimetableSlot.startTime,
-             "endTime": newTimetableSlot.endTime,
-             "weekDay": newTimetableSlot.weekDay,
-             "week": newTimetableSlot.week,
-             "color": newTimetableSlot.color
-             ]
-            */
-            let data = [
-                "timetableName": newTimetableSlot.name,
-                "description": newTimetableSlot.description,
-                "startTime": newTimetableSlot.startTime,
-                "endTime": newTimetableSlot.endTime,
-                "weekDay": newTimetableSlot.weekDay,
-                "week": newTimetableSlot.week,
-                "color": newTimetableSlot.color
-            ]
-            userPath.child("timetable").child(newTimetableSlot.week).child(newTimetableSlot.weekDay).childByAutoId().setValue(data)
-            
-        }else if (type == 1) {
-            let data = [
-                "taskName": newTask.name,
-                "description": newTask.description,
-            ]
-            // Retrieve data to put into the task data dictionary!!!!!!!!!!
-        }
+    func pushTimetableSlotToDatabase(userPath: DatabaseReference) {
+        let data = [
+            "timetableName": newTimetableSlot.name,
+            "description": newTimetableSlot.description,
+            "startTime": newTimetableSlot.startTime,
+            "endTime": newTimetableSlot.endTime,
+            "weekDay": newTimetableSlot.weekDay,
+            "week": newTimetableSlot.week,
+            "color": newTimetableSlot.color
+        ] // Holds data in dictionary for database push.
+        
+        userPath.child("timetable").child(newTimetableSlot.week).child(newTimetableSlot.weekDay).childByAutoId().setValue(data) // Pushes data to database.
+    }
+    
+    func pushTaskToDatabase(userPath: DatabaseReference) {
+        let data = [
+            "taskName": newTask.name,
+            "description": newTask.description,
+            "color": newTask.color,
+            "time": newTask.time,
+            "day": newTask.day,
+        ] // Hold data in dictionary for database push.
+        
+        userPath.child("tasks").childByAutoId().setValue(data) // Pushes data to database.
     }
     
     override func didReceiveMemoryWarning() {
