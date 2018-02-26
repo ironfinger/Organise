@@ -15,6 +15,8 @@
 		E3269A8520233D4800F7DD55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3269A8320233D4800F7DD55 /* LaunchScreen.storyboard */; };
 		E3269A8D20233DE700F7DD55 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3269A8C20233DE700F7DD55 /* GoogleService-Info.plist */; };
 		E3470D272023BE2900412ABD /* TimetableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3470D262023BE2900412ABD /* TimetableViewController.swift */; };
+		E36EEE3120400DCF00F6CFD8 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36EEE3020400DCF00F6CFD8 /* TaskTableViewCell.swift */; };
+		E36EEE3420405DDA00F6CFD8 /* TimetableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36EEE3320405DDA00F6CFD8 /* TimetableTableViewCell.swift */; };
 		E373FF732023C6A800FEB3A0 /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E373FF722023C6A800FEB3A0 /* AddTaskViewController.swift */; };
 		E381135E20285842003A91E7 /* AddTaskTodoTimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381135D20285842003A91E7 /* AddTaskTodoTimesViewController.swift */; };
 		E381136020285A01003A91E7 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E381135F20285A01003A91E7 /* Task.swift */; };
@@ -40,6 +42,8 @@
 		E3269A8620233D4800F7DD55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E3269A8C20233DE700F7DD55 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3470D262023BE2900412ABD /* TimetableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewController.swift; sourceTree = "<group>"; };
+		E36EEE3020400DCF00F6CFD8 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		E36EEE3320405DDA00F6CFD8 /* TimetableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableTableViewCell.swift; sourceTree = "<group>"; };
 		E373FF722023C6A800FEB3A0 /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		E381135D20285842003A91E7 /* AddTaskTodoTimesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTodoTimesViewController.swift; sourceTree = "<group>"; };
 		E381135F20285A01003A91E7 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 		E3269A7620233D4800F7DD55 /* Organise */ = {
 			isa = PBXGroup;
 			children = (
+				E36EEE2F20400D5C00F6CFD8 /* TableViewCells */,
 				E3DD8D8E2025E1BA00F72031 /* Classes */,
 				E373FF6F2023C0A900FEB3A0 /* Extensions */,
 				E3470D282023BE3000412ABD /* ViewControllers */,
@@ -110,7 +115,6 @@
 				E3269A8620233D4800F7DD55 /* Info.plist */,
 				E3269A8C20233DE700F7DD55 /* GoogleService-Info.plist */,
 				E3269A7E20233D4800F7DD55 /* Organise.xcdatamodeld */,
-				E391F0422028F8D2007774F4 /* TasksViewController.swift */,
 			);
 			path = Organise;
 			sourceTree = "<group>";
@@ -120,9 +124,19 @@
 			children = (
 				E3D5097120250CEB0060C815 /* AddTask */,
 				E3269A7920233D4800F7DD55 /* LoginSignUpViewController.swift */,
+				E391F0422028F8D2007774F4 /* TasksViewController.swift */,
 				E3470D262023BE2900412ABD /* TimetableViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E36EEE2F20400D5C00F6CFD8 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E36EEE3020400DCF00F6CFD8 /* TaskTableViewCell.swift */,
+				E36EEE3320405DDA00F6CFD8 /* TimetableTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		E373FF6F2023C0A900FEB3A0 /* Extensions */ = {
@@ -286,7 +300,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3269A8020233D4800F7DD55 /* Organise.xcdatamodeld in Sources */,
+				E36EEE3120400DCF00F6CFD8 /* TaskTableViewCell.swift in Sources */,
 				E3269A7A20233D4800F7DD55 /* LoginSignUpViewController.swift in Sources */,
+				E36EEE3420405DDA00F6CFD8 /* TimetableTableViewCell.swift in Sources */,
 				E3DD8D8D2025DE0500F72031 /* AddTaskTimesViewController.swift in Sources */,
 				E381135E20285842003A91E7 /* AddTaskTodoTimesViewController.swift in Sources */,
 				E381136020285A01003A91E7 /* Task.swift in Sources */,

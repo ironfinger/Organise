@@ -9,6 +9,7 @@
 import Foundation
 
 class Task {
+    var key = ""
     var name = ""
     var description = ""
     var color = ""

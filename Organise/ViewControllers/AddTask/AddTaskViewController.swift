@@ -140,6 +140,10 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     
     // MARK: Actions:
+    @IBAction func cancelAddTaskGestureTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func nextButtonTapped(_ sender: Any) {
         // This is to stop the app from uploading a task without a name.
         // This is to basically decide between a type timetable slot or a new task:

@@ -20,6 +20,7 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
         // Do any additional setup after loading the view.
         self.tableView.dataSource = self // Declare the datasource of the table view.
         self.tableView.delegate = self // Declare the delegate of the table view.
+        self.tableView.separatorStyle = .none
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,9 +35,13 @@ class TimetableViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel!.text = timetableSlots[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimetableCell", for: indexPath) as! TimetableTableViewCell
+        cell.timetableLabel.text = "Test Cell"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 63
     }
     
     // MARK: Actions:
