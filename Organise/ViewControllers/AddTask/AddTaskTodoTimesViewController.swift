@@ -65,6 +65,7 @@ class AddTaskTodoTimesViewController: UIViewController {
     }
     
     @IBAction func nextButtonTapped(_ sender: Any) {
+        pullDatePickerTimes()
         performSegue(withIdentifier: "TaskCompletetionSegue", sender: nil)
     }
     
@@ -75,6 +76,10 @@ class AddTaskTodoTimesViewController: UIViewController {
         formatForDay.dateFormat = "yyyy-MM-dd"
         formatForTime.dateFormat = "HH:mm"
         
+        newTask.day = formatForDay.string(from: datePicker.date)
+        newTask.time = formatForTime.string(from: datePicker.date)
+        
+        print("Task day and time")
         print(newTask.day)
         print(newTask.time)
     }

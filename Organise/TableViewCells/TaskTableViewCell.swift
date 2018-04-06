@@ -18,6 +18,8 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var expandedSubSubView: UIView!
     @IBOutlet weak var completeTaskButton: UIButton!
     @IBOutlet weak var completeByLabel: UILabel!
+    @IBOutlet weak var taskSettingsButton: UIButton!
+    @IBOutlet weak var timeCompletion: UILabel!
     
     public let height = 91
     public let expandedHeight = 310
@@ -37,33 +39,13 @@ class TaskTableViewCell: UITableViewCell {
         
         completeTaskButton.layer.cornerRadius = 10
         completeTaskButton.backgroundColor = UIColor.white
+        
+        
+        timeCompletion.backgroundColor = UIColor.init(red: 16/255, green: 156/255, blue: 146/255, alpha: 1)
+        timeCompletion.layer.cornerRadius = 10
     }
     
     @IBAction func taskCompleted(_ sender: Any) {
-    /*
-        print("Button pressed")
-    
-        let userUID = Auth.auth().currentUser!.uid
-        Database.database().reference().child("users").child(userUID).child("tasks").child(associatedTask.key).removeValue { (error, ref) in
-            if (error != nil) {
-                print("Cannot remove")
-            }else{
-                print("Successfully removed task")
-                
-                UIView.animate(withDuration: 1, delay: 0, options: UIViewAnimationOptions.allowUserInteraction, animations: {
-                    self.cellSubView.alpha = 0
-                    self.taskNameLabel.alpha = 0
-                    self.expandedSubView.alpha = 0
-                    self.expandedSubView.frame.size.height = 0
-                    self.expandedSubSubView.alpha = 0
-                    self.expandedSubSubView.frame.size.height = 0
-                    self.completeTaskButton.alpha = 0
-                    self.completeByLabel.alpha = 0
-                }, completion: { (done) in
-                    print("Animation Complete")
-                })
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-            }*/
     }
 }
 

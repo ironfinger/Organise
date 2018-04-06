@@ -167,6 +167,7 @@ class AddTaskViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             }
             timetableSlot.color = pickerColours[colourToSend]
             
+            
             print("Colour to store \(timetableSlot.color)")
             performSegue(withIdentifier: "AddTimetableTimesSegue", sender: timetableSlot)
         }

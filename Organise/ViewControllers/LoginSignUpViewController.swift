@@ -13,14 +13,14 @@ import FirebaseDatabase
 class LoginSignUpViewController: UIViewController {
     
     // Outlets:
-    @IBOutlet weak var loginOptionSegmentControl: UISegmentedControl! // This holds the user login option for the app.
+    @IBOutlet weak var loginOptionSegmentControl: UISegmentedControl! // Holds the user login option for the app.
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginSignUpButton: UIButton!
     @IBOutlet weak var subView: UIView!
     
     // Variables:
-    var chosenLoginMethod = 0 // This is to decide whether to login or create a user based on the email and password given.
+    var chosenLoginMethod = 0 // Decides whether to login or create a user based on the email and password given.
     
     // MARK: View Setup:
     override func viewDidLoad() {
@@ -54,10 +54,10 @@ class LoginSignUpViewController: UIViewController {
     @IBAction func loginOptionSegmentControlChanged(_ sender: Any) {
         if (loginOptionSegmentControl.selectedSegmentIndex == 0) {
             chosenLoginMethod = 0
-            loginSignUpButton.setTitle("Login", for: .normal) // Change the title label of the sign up button to make sure that the user knows which sign in option they've chosen.
+            loginSignUpButton.setTitle("Login", for: .normal) // Change the title label of the sign up button.
         }else if (loginOptionSegmentControl.selectedSegmentIndex == 1) {
             chosenLoginMethod = 1
-            loginSignUpButton.setTitle("Sign Up", for: .normal) // Change the title label of the sign up button to make sure that the user knows which sign in option they've chosen.
+            loginSignUpButton.setTitle("Sign Up", for: .normal) // Change the title label of the sign up button.
         }
     }
     
@@ -71,7 +71,7 @@ class LoginSignUpViewController: UIViewController {
     }
     
     // Firebase Authentication:
-    func login() { // Logs the user into the app with the provided email and password.
+    func login() { // Login a user.
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if (error != nil) {
                 print("We couldn't log in the user \(String(describing: error))")
@@ -83,7 +83,7 @@ class LoginSignUpViewController: UIViewController {
         }
     }
     
-    func signUp() { // Creates a new user with the provided email and password
+    func signUp() { // Create a new user.
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if (error != nil) {
                 print("We couldn't create a new user \(String(describing: error))")
@@ -99,6 +99,4 @@ class LoginSignUpViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }

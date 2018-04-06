@@ -97,14 +97,17 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.associatedTask = tasks[indexPath.row]
         cell.taskNameLabel.text = tasks[indexPath.row].name
         cell.completeByLabel.text = getDescriptonText(des: tasks[indexPath.row].description)
+        cell.timeCompletion.text = tasks[indexPath.row].time
         cell.completeTaskButton.tag = indexPath.row
         cell.completeTaskButton.addTarget(self, action: #selector(cellButtonClicked), for: UIControlEvents.touchUpInside)
+        cell.taskSettingsButton.addTarget(self, action: #selector(cellSettingsButtonClicked), for: UIControlEvents.touchUpInside)
         
         // Set all the aesthetic features of the cell:
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         cell.cellSubView.backgroundColor = colors.pullColorFromString(selectedColor: tasks[indexPath.row].color, shade: 2)
         cell.expandedSubView.backgroundColor = colors.pullColorFromString(selectedColor: tasks[indexPath.row].color, shade: 2)
         cell.expandedSubSubView.backgroundColor = colors.pullColorFromString(selectedColor: tasks[indexPath.row].color, shade: 1)
+        cell.timeCompletion.backgroundColor = colors.pullColorFromString(selectedColor: tasks[indexPath.row].color, shade: 2)
         return cell
     }
     
@@ -129,9 +132,12 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func cellExpansion(indexPath: IndexPath) {
-        indexOfCellToExpand = indexPath.row
+        if (indexPath.row == indexOfCellToExpand) {
+            indexOfCellToExpand = -1
+        }else {
+            indexOfCellToExpand = indexPath.row
+        }
         tableView.reloadRows(at: [indexPath], with: .fade)
-        
     }
     
     // MARK: Actions:
@@ -139,7 +145,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         performSegue(withIdentifier: "AddTaskViewController", sender: nil)
     }
     
-    @objc func cellButtonClicked() {
+    @objc func cellButtonClicked() { // Called when the complete button is clicked
         print("Cell button Clicked")
         // Re-do table here.
         let selectedTask = tasks[indexOfCellToExpand]
@@ -149,15 +155,33 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
                 print("Couldn't delete \(String(describing: error))")
             }else{
                 self.tasks.remove(at: self.indexOfCellToExpand)
-                self.databasePull()
+                do {
+                    try self.databasePull()
+                    self.tableView.reloadData()
+                } catch {
+                    self.tasks.removeAll()
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
+    @objc func cellSettingsButtonClicked() {
+        print("Settings Pressed")
+        performSegue(withIdentifier: "taskSettingsSegue", sender: nil)
+    }
+    
     // MARK: Segue:
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextVC = segue.destination as! AddTaskViewController
-        nextVC.addType = "Task"
+        if (segue.identifier == "AddTaskViewController") {
+            let nextVC = segue.destination as! AddTaskViewController
+            nextVC.addType = "Task"
+
+        }else if (segue.identifier == "taskSettingsSegue") {
+            let nextVC = segue.destination as! TaskSettingViewController
+            nextVC.task = tasks[indexOfCellToExpand]
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
