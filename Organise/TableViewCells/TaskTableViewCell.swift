@@ -36,13 +36,10 @@ class TaskTableViewCell: UITableViewCell {
         cellSubView.layer.cornerRadius = 10
         expandedSubView.layer.cornerRadius = 10
         expandedSubSubView.layer.cornerRadius = 10
+        timeCompletion.layer.cornerRadius = 10
         
         completeTaskButton.layer.cornerRadius = 10
         completeTaskButton.backgroundColor = UIColor.white
-        
-        
-        timeCompletion.backgroundColor = UIColor.init(red: 16/255, green: 156/255, blue: 146/255, alpha: 1)
-        timeCompletion.layer.cornerRadius = 10
     }
     
     @IBAction func taskCompleted(_ sender: Any) {

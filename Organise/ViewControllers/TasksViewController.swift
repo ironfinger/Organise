@@ -53,6 +53,10 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     // MARK: Firebase Database Pull:
     func databasePull() {
+        
+        print("Fetch")
+        print("Starting array amount: \(tasks.count)")
+        
         let userUID = Auth.auth().currentUser!.uid
         Database.database().reference().child("users").child(userUID).child("tasks").observe(DataEventType.childAdded, with: { (snapshot) in
             // Pull values from database:
@@ -85,14 +89,20 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
                 print("We successfully observed database")
             }
         }
+        
+        print("Final array amount after fetch: \(tasks.count)")
     }
     
     // Table View:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(tasks.count)
         return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        print("Table cell shown")
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskViewCell", for: indexPath) as! TaskTableViewCell
         cell.associatedTask = tasks[indexPath.row]
         cell.taskNameLabel.text = tasks[indexPath.row].name
@@ -108,6 +118,7 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.expandedSubView.backgroundColor = colors.pullColorFromString(selectedColor: tasks[indexPath.row].color, shade: 2)
         cell.expandedSubSubView.backgroundColor = colors.pullColorFromString(selectedColor: tasks[indexPath.row].color, shade: 1)
         cell.timeCompletion.backgroundColor = colors.pullColorFromString(selectedColor: tasks[indexPath.row].color, shade: 2)
+        
         return cell
     }
     
@@ -154,14 +165,20 @@ class TasksViewController: UIViewController, UITableViewDataSource, UITableViewD
             if (error != nil) {
                 print("Couldn't delete \(String(describing: error))")
             }else{
-                self.tasks.remove(at: self.indexOfCellToExpand)
+                self.tasks.removeAll()
+                self.databasePull()
+                self.tableView.reloadData()
+                /*
                 do {
                     try self.databasePull()
                     self.tableView.reloadData()
+                    self.indexOfCellToExpand = -1
                 } catch {
                     self.tasks.removeAll()
                     self.tableView.reloadData()
+                    self.indexOfCellToExpand = -1
                 }
+                */
             }
         }
     }

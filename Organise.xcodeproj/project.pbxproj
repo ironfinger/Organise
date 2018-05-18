@@ -52,7 +52,7 @@
 		E381135D20285842003A91E7 /* AddTaskTodoTimesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTodoTimesViewController.swift; sourceTree = "<group>"; };
 		E381135F20285A01003A91E7 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		E391F0422028F8D2007774F4 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
-		E39E52E320627D25001C0BF2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Organise/ViewControllers/SettingsViewController.swift; sourceTree = "<group>"; };
+		E39E52E320627D25001C0BF2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E39E52E520627EDF001C0BF2 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		E3D50976202512F80060C815 /* AddTaskCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskCompletionViewController.swift; sourceTree = "<group>"; };
 		E3DA191D2044A5B7003B539D /* TaskSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSettingViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +94,6 @@
 		E3269A6B20233D4800F7DD55 = {
 			isa = PBXGroup;
 			children = (
-				E39E52E320627D25001C0BF2 /* SettingsViewController.swift */,
 				E3269A7620233D4800F7DD55 /* Organise */,
 				E3269A7520233D4800F7DD55 /* Products */,
 				BEDEF5D264DE9CBE2FEF667C /* Pods */,
@@ -134,6 +133,7 @@
 				E3D5097120250CEB0060C815 /* AddTask */,
 				E3269A7920233D4800F7DD55 /* LoginSignUpViewController.swift */,
 				E391F0422028F8D2007774F4 /* TasksViewController.swift */,
+				E39E52E320627D25001C0BF2 /* SettingsViewController.swift */,
 				E3470D262023BE2900412ABD /* TimetableViewController.swift */,
 				E3DA191D2044A5B7003B539D /* TaskSettingViewController.swift */,
 			);
